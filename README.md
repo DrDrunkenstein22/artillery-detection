@@ -33,7 +33,7 @@ The system can detect and classify 12 different military asset types in real-tim
 **Name**: Military Assets Dataset (12 Classes - YOLO Format)  
 **Source**: [Kaggle - rawsi18/military-assets-dataset-12-classes-yolo8-format](https://www.kaggle.com/datasets/rawsi18/military-assets-dataset-12-classes-yolo8-format)
 
-### Classes (12 total):
+### Classes (13 total):
 1. Camouflage Soldier
 2. Weapon
 3. Military Tank
