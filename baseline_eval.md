@@ -25,23 +25,23 @@ the specifics of this setup (~6.4k training images, 8 classes, T4 GPU, pretraine
 
 ## Per-Class AP@50 Estimates
 
-| Class | YOLOv11m | RT-DETR-L | Faster R-CNN R50 | 
-|---|---|---|---|---|
-| **artillery** | 0.57 | 0.53 | 0.50 | 
-| **tank** | 0.74 | 0.72 | 0.68 | 
-| **apc** | 0.65 | 0.62 | 0.58 | 
-| **military_truck** | 0.71 | 0.68 | 0.64 | 
-| **rocket_artillery** | 0.60 | 0.57 | 0.53 
-| **ifv** | 0.63 | 0.60 | 0.55 | 
-| **military_aircraft** | 0.78 | 0.76 | 0.70 | 
-| **other_military** | 0.52 | 0.49 | 0.44 | 
+| Class | YOLOv11m | RT-DETR-L | Faster R-CNN R50 |
+|---|---|---|---|
+| **artillery** | 0.57 | 0.53 | 0.50 |
+| **tank** | 0.74 | 0.72 | 0.68 |
+| **apc** | 0.65 | 0.62 | 0.58 |
+| **military_truck** | 0.71 | 0.68 | 0.64 |
+| **rocket_artillery** | 0.60 | 0.57 | 0.53 |
+| **ifv** | 0.63 | 0.60 | 0.55 |
+| **military_aircraft** | 0.78 | 0.76 | 0.70 |
+| **other_military** | 0.52 | 0.49 | 0.44 |
 
 ---
 
 ## Inference Breakdown
 
 ### YOLOv11m
-- Single forward pass, no region proposals. NMS adds ~1-2ms.
+- Single forward pass, no region proposals. NMS adds ~1–2 ms.
 - T4 throughput peaks around 140 FPS (batch=1, fp16 via AMP).
 - Scales well with batch size — at bs=8 expect ~400 FPS throughput.
 
@@ -49,27 +49,25 @@ the specifics of this setup (~6.4k training images, 8 classes, T4 GPU, pretraine
 - Transformer decoder replaces NMS entirely (end-to-end). No NMS overhead.
 - Slower than YOLO due to attention layers (~259 GFLOPs vs ~68).
 - T4 throughput ~65 FPS at batch=1. Real-time capable but tight on T4.
-- With TensorRT export, latency drops to ~8-10ms (not tested here).
+- With TensorRT export, latency drops to ~8–10 ms (not tested here).
 
 ### Faster R-CNN R50
 - Two-stage: RPN generates ~300 proposals → RoI Head classifies each.
-- Latency dominated by RoI pooling — scales poorly with image size (we use 800px).
+- Latency dominated by RoI pooling, scales poorly with image size (we use 800 px).
 - ~18 FPS is typical for R50+FPN on T4 at bs=1. Not real-time.
-- High latency variance (p95 ~80ms) due to variable proposal count per image.
+- High latency variance (p95 ~80 ms) due to variable proposal count per image.
 
 ---
 
 ## Training Dynamics
 
-| | YOLOv11m | RT-DETR-L | Faster R-CNN R50 |
+| Metric | YOLOv11m | RT-DETR-L | Faster R-CNN R50 |
 |---|---|---|---|
-| Epochs to converge | ~30-35 | ~35-45 | ~18-22 |
-| GPU memory (T4 16GB) | ~8GB | ~13GB | ~7GB |
-| Training time | ~2.5-3h | ~3.5-4h | ~3-4h |
+| Epochs to converge | ~30–35 | ~35–45 | ~18–22 |
+| GPU memory (T4 16GB) | ~8 GB | ~13 GB | ~7 GB |
+| Training time | ~2.5–3 h | ~3.5–4 h | ~3–4 h |
 
 RT-DETR is transformer-based and tends to underfit on small datasets relative to CNNs,
 so the accuracy gap vs YOLOv11 may be larger than typical benchmarks suggest.
+
 Faster R-CNN converges in fewer epochs but each epoch is slower due to two-stage overhead.
-
----
-
