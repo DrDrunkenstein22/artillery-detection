@@ -25,16 +25,16 @@ the specifics of this setup (~6.4k training images, 8 classes, T4 GPU, pretraine
 
 ## Per-Class AP@50 Estimates
 
-| Class | YOLOv11m | RT-DETR-L | Faster R-CNN R50 | Notes |
+| Class | YOLOv11m | RT-DETR-L | Faster R-CNN R50 | 
 |---|---|---|---|---|
-| **artillery** | 0.57 | 0.53 | 0.50 | Primary target. Visually similar to rocket_artillery; expect highest confusion here. |
-| **tank** | 0.74 | 0.72 | 0.68 | Most represented in training data; distinctive silhouette. Best-performing class. |
-| **apc** | 0.65 | 0.62 | 0.58 | Frequently confused with ifv due to overlapping visual features. |
-| **military_truck** | 0.71 | 0.68 | 0.64 | High visual variance (cab + cargo configs) but high sample count helps. |
-| **rocket_artillery** | 0.60 | 0.57 | 0.53 | Confused with artillery; launcher rail vs barrel is subtle at lower resolutions. |
-| **ifv** | 0.63 | 0.60 | 0.55 | Confused with apc and tank. BMP/Bradley variants look similar at 640px. |
-| **military_aircraft** | 0.78 | 0.76 | 0.70 | Easiest class — distinctive shape, rarely confused. Low sample count may cap recall. |
-| **other_military** | 0.52 | 0.49 | 0.44 | Catch-all bucket with high intra-class variance; hardest class to learn. |
+| **artillery** | 0.57 | 0.53 | 0.50 | 
+| **tank** | 0.74 | 0.72 | 0.68 | 
+| **apc** | 0.65 | 0.62 | 0.58 | 
+| **military_truck** | 0.71 | 0.68 | 0.64 | 
+| **rocket_artillery** | 0.60 | 0.57 | 0.53 
+| **ifv** | 0.63 | 0.60 | 0.55 | 
+| **military_aircraft** | 0.78 | 0.76 | 0.70 | 
+| **other_military** | 0.52 | 0.49 | 0.44 | 
 
 ---
 
@@ -70,15 +70,6 @@ the specifics of this setup (~6.4k training images, 8 classes, T4 GPU, pretraine
 RT-DETR is transformer-based and tends to underfit on small datasets relative to CNNs,
 so the accuracy gap vs YOLOv11 may be larger than typical benchmarks suggest.
 Faster R-CNN converges in fewer epochs but each epoch is slower due to two-stage overhead.
-
----
-
-## Key Confusions to Watch (Confusion Matrix Predictions)
-
-- `artillery` ↔ `rocket_artillery`: ~15-20% of artillery FPs will be predicted as rocket_artillery
-- `apc` ↔ `ifv`: ~12-18% cross-confusion (both tracked, boxlike, similar scale)
-- `military_truck` → `other_military`: ~8% of trucks will fall into the catch-all
-- `other_military` is effectively a noise absorber — expect low precision (~0.40-0.50) on it
 
 ---
 
