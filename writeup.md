@@ -168,7 +168,8 @@ Intelligence agencies receive thousands of satellite images daily. AI can pre-sc
 Forward observers could use AI on a tablet or ruggedized device to rapidly identify and classify enemy artillery positions, feeding coordinates to fire control systems faster than manual methods.
 
 **5. Convoy Protection**
-Vehicles in a convoy could use onboard cameras with AI to detect ambush threats — spotting hidden artillery or IFVs before they engage.
+ Vehicles in a convoy could use onboard cameras with AI to detect ambush threats — spotting hidden artillery or IFVs before they engage.
+ 
 ---
 
 ## Why This Comparison Matters
