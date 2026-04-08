@@ -66,7 +66,7 @@ We picked three models that represent **three different philosophies** of how to
 
 ---
 
-### Model 1: YOLOv11m — "The Speed Demon"
+### Model 1: YOLOv11m 
 
 **YOLO** stands for "You Only Look Once." The name says it all.
 
@@ -85,7 +85,7 @@ Most older AI systems looked at an image multiple times, in different ways, befo
 
 ---
 
-### Model 2: RT-DETR-L — "The Smart One"
+### Model 2: RT-DETR-L 
 
 **RT-DETR** stands for Real-Time DEtection TRansformer. It uses a technology called a **Transformer**, which originally became famous in AI language models (the same technology behind ChatGPT).
 
@@ -104,7 +104,7 @@ The key idea with Transformers is **attention** — the model doesn't just look 
 
 ---
 
-### Model 3: Faster R-CNN R50 — "The Veteran"
+### Model 3: Faster R-CNN R50 
 
 **Faster R-CNN** is an older, well-established architecture from 2015. It's a **two-stage detector**, meaning it works in two steps:
 
