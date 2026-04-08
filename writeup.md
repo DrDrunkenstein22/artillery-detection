@@ -169,10 +169,6 @@ Forward observers could use AI on a tablet or ruggedized device to rapidly ident
 
 **5. Convoy Protection**
 Vehicles in a convoy could use onboard cameras with AI to detect ambush threats — spotting hidden artillery or IFVs before they engage.
-
-**6. Logistics and Blue Force Tracking**
-Track friendly (blue force) vehicles automatically to maintain situational awareness without requiring constant radio check-ins.
-
 ---
 
 ## Why This Comparison Matters
